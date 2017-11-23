@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Playing with CSS Variables and JS</title>
+
+    <style>
+
+        :root {
+            --baseColor: #ff4500;
+            --spacing: 10px;
+            --blur: 0px;
+        }
+
+        html {
+            background-color: #193549;
+            color: #fff;
+            font-family: sans-serif;
+            font-size: 50px;
+            font-weight: 100;
+            text-align: center;
+        }
+
+        .highlight {
+            color: var(--baseColor);
+        }
+
+        .controls {
+            margin-bottom: 50px;
+        }
+
+        .controls input {
+            width: 100px;
+        }
+
+        img {
+            background-color: var(--baseColor);
+            filter: blur(var(--blur));
+            padding: var(--spacing);
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Update CSS Variables with <span class="highlight">JS</span></h1>
+
+    <div class="controls">
+        <label for="spacing">Spacing:</label>
+        <input type="range" name="spacing" min="10" max="200" value="10" data-sizing="px">
+
+        <label for="blur">Blur:</label>
+        <input type="range" name="blur" min="10" max="25" value="0" data-sizing="px">
+
+        <label for="base">Base Color:</label>
+        <input type="color" name="baseColor" value="#FF4500">
+    </div>
+
+    <img src="https://images.unsplash.com/photo-1508922450598-2f5b1193950a?dpr=1&auto=format&fit=crop&w=1000&q=80&cs=tinysrgb&ixid=dW5zcGxhc2guY29tOzs7Ozs%3D" alt="Photo of mountains and sea.">
+
+    <script>
+
+        const inputs = document.querySelectorAll('.controls input');
+
+        function handleUpdate() {
+            const suffix = this.dataset.sizing || '';
+            document.documentElement.style.setProperty(`--${this.name}`, this.value + suffix);
+        }
+
+        inputs.forEach(input => input.addEventListener('change', handleUpdate));
+        inputs.forEach(input => input.addEventListener('mousemove', handleUpdate));
+
+    </script>
+</body>
+</html>
