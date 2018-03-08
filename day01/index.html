@@ -38,7 +38,7 @@
             <kbd>J</kbd>
             <span class="sound">snare</span>
         </div>
-        <div data-key=75"" class="key">
+        <div data-key="75" class="key">
             <kbd>K</kbd>
             <span class="sound">tom</span>
         </div>
@@ -66,21 +66,22 @@
 
             // stop the function from running all together
             if (!audio) return;
+
             // rewind the sound to the start
-            audion.currentTime = 0;
+            audio.currentTime = 0;
             // play it
             audio.play();
-            key.ClassList.add('playing');
+            key.classList.add('playing');
         }
 
         // remove class after transition end
         function removeTransition(e) {
-            if(e.propertyName !== 'transition') return;
+            if(e.propertyName !== 'transform') return;
             this.classList.remove('playing');
         }
 
-        const keys = document.querySelectorAll('.key');
-        key.forEach(key => key.addEventListener('transitionend'), removeTransition);
+        const keys = Array.from(document.querySelectorAll('.key'));
+        keys.forEach(key => key.addEventListener('transitionend', removeTransition));
 
         window.addEventListener('keydown', playSound);
 

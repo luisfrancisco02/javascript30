@@ -6,7 +6,7 @@
 </head>
 <body>
 
-  <p onClick="makeGreen()">×BREAK×DOWN×</p>
+  <p onClick="makeGreen()" class="foo">×BREAK×DOWN×</p>
 
   <script>
     const dogs = [
@@ -45,13 +45,13 @@
     console.assert(p.classList.contains('ouch'), 'That is wrong!');
 
     // clearing
-    console.clear();
+    // console.clear();
 
     // Viewing DOM Elements
-    console.log(p);
+    console.log('log: ', p);
     console.dir(p);
 
-    console.clear();
+    // console.clear();
 
     // Grouping together
     dogs.forEach(dog => {
